@@ -26,7 +26,6 @@ jobs: # a collection of steps
       
       - run:
           command:|
-              mkdir /zpi;
               echo "COKOLWIEK" > /zpi/artifact-1;
               mkdir /zpi/artifacts;
               echo "COKOLWIEK" > /zpi/artifacts/artifact-2;

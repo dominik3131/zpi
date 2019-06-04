@@ -8,7 +8,11 @@ jobs: # a collection of steps
       - image: circleci/openjdk:8-jdk-browsers # ...with this image as the primary container; this is where all `steps` will run
 
     steps: # a collection of executable commands
-
+      -run:
+          command:|
+              echo "COKOLWIEK" > /zpi/artifact-1;
+              mkdir /zpi/artifacts;
+              echo "COKOLWIEK" > /zpi/artifacts/artifact-2;
       - checkout # check out source code to working directory
 
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
@@ -26,8 +30,8 @@ jobs: # a collection of steps
       
       
       - store_artifacts:
-          path: /tmp/artifact-1
+          path: /zpi/artifact-1
           destination: artifact-file
 
       - store_artifacts:
-          path: /tmp/artifacts
+          path: /zpi/artifacts

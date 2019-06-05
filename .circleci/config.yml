@@ -1,32 +1,31 @@
 version: 2 # use CircleCI 2.0
-jobs: # a collection of steps
-  build: # runs not using Workflows must have a `build` job as entry point
+jobs: 
+  build: 
     
-    working_directory: ~/zpi # directory where steps will run
+    working_directory: ~/testf 
 
-    docker: # run the steps with Docker
+    docker: 
       - image: circleci/openjdk:8-jdk-browsers 
 
-    steps: # a collection of executable commands
+    steps: 
       
-      - checkout # check out source code to working directory
+      - checkout 
       
-      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
-          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-          key: zpi-{{ checksum "pom.xml" }}
+      - restore_cache: 
+          key: testf-{{ checksum "pom.xml" }}
       
-      - run: mvn dependency:go-offline # gets the project dependencies
+      - run: mvn dependency:go-offline 
       
-      - save_cache: # saves the project dependencies
+      - save_cache:
           paths:
             - ~/.m2
-          key: zpi-{{ checksum "pom.xml" }}
+          key: testf-{{ checksum "pom.xml" }}
       
-      - run: mvn package # run the actual tests
+      - run: mvn package
       
       - store_test_results:
           path: target/surefire-reports
           
      
       - store_artifacts:
-          path: target/zpi-0.0.1-SNAPSHOT.jar
+          path: target/z-0.0.1-SNAPSHOT.jar

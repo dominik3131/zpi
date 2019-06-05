@@ -41,7 +41,7 @@ jobs:
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/circleci/target/
             
 workflows:
-  version: 2 #coom
+  version: 2 #cooma
   main:
     jobs:
       - build:

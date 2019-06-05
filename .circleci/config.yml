@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     
-    working_directory: ~/circleci
+    working_directory: /tmp
 
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -24,21 +24,21 @@ jobs:
       - run: mvn package
       
       - store_test_results:
-          path: target/surefire-reports
+          path: /tmp/surefire-reports
       
       - store_artifacts:
-          path: target/demo-java-spring-0.0.1-SNAPSHOT.jar
+          path: /tmp/demo-java-spring-0.0.1-SNAPSHOT.jar
   publish-github-release:
     docker:
       - image: cibuilds/github:0.10
     steps:
       - attach_workspace:
-          at: ~/circleci/target/
+          at: /tmp
       - run:
           name: "Publish Release on GitHub"
           command: |
             VERSION=$(my-binary --version)
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/circleci/target/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /tmp
             
 workflows:
   version: 2

@@ -30,7 +30,7 @@ jobs:
           path: demo-java-spring-0.0.1-SNAPSHOT.jar
   publish-github-release:
     docker:
-      - image: circleci/golang:1.8 #aas
+      - image: circleci/golang:1.8
     steps:
       - attach_workspace:
           at: ~/circleci

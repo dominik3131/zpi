@@ -23,8 +23,6 @@ jobs: # a collection of steps
             - ~/.m2
           key: zpi-{{ checksum "pom.xml" }}
 
-      - run: chown -R $USER:$USER target/
-
       - run: mvn package # run the actual tests
       
       - store_test_results:

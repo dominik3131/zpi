@@ -28,7 +28,7 @@ jobs:
       
       - store_artifacts:
           path: demo-java-spring-0.0.1-SNAPSHOT.jar
-      - persist_to_workspace:
+      - persist_to_workspace: #as
           root: /tmp/ws
           paths: 
             - build/*
